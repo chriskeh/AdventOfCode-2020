@@ -25,9 +25,30 @@ def slurp_input(input_file):
     return my_list, lines, columns
 
 
-def walk_through_the_forest(forest, max_line_index, max_col_index, line_step, col_step):
+def walk_through_the_forest(forest, max_col_index, max_line_index, col_step, line_step):
+    """
+    Check how many trees are encountered for the given parameters
+    :param forest: a list of list representing the forest
+    :param max_col_index:
+    :param max_line_index:
+    :param col_step:
+    :param line_step:
+    :return: the number of encountered trees
+    """
 
-    pass
+    # We do one jump as a start and then dive into the loop
+    current_line = line_step
+    current_col = col_step
+    trees = 0
+    while current_line <= max_line_index:
+        # print("At {}, {} the value is {}".format(current_line, current_col, forest[current_line][current_col]))
+        if forest[current_line][current_col] == "#":
+            trees += 1
+        current_line += line_step
+        current_col += col_step
+        if current_col > max_col_index:
+            current_col = (current_col % max_col_index) - 1
+    return trees
 
 
 def main():
@@ -44,21 +65,16 @@ def main():
     max_line_index = total_lines - 1
     max_col_index = total_columns - 1
 
-    # trees = walk_through_the_forest(forest, max_line_index, max_col_index, line_step, col_step)
-    # We do one jump as a start and then dive into the loop
-    current_line = line_step
-    current_col = col_step
-    trees = 0
-    while current_line <= max_line_index:
-        # print("At {}, {} the value is {}".format(current_line, current_col, forest[current_line][current_col]))
-        if forest[current_line][current_col] == "#":
-            trees += 1
-        current_line += line_step
-        current_col += col_step
-        if current_col > max_col_index:
-            current_col = (current_col % max_col_index) - 1
+    total = 1
+    jump_list = [ (1,1), (3, 1), (5,1), (7,1), (1,2)]
+    for elem in jump_list:
+        trees = walk_through_the_forest(forest, max_col_index, max_line_index, elem[0], elem[1])
+        print("Trees: {}".format(trees))
+        total *= trees
 
-    print("Trees: {}".format(trees))
+    print("Total: {}".format(total))
+
+
 
 if __name__ == "__main__":
     main()
