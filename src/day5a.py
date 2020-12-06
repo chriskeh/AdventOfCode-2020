@@ -47,11 +47,29 @@ def decode_bsp(bsp):
     plane (numbered 0 through 7). The same process as above proceeds again, this time with only three steps.
     L means to keep the lower half, while R means to keep the upper half.
 
+    44 = 00101100
+
     :param bsp: binary space partitioning of a seat
     :return: seat number
     """
 
-    return 4711
+    bsp_row = bsp[0:7]
+    bsp_seat = bsp[7:10]
+
+    tmp1 = bsp_row.replace('F', '0')
+    bsp_bin_row = tmp1.replace('B', '1')
+
+    tmp1 = bsp_seat.replace('R', '1')
+    bsp_bin_seat = tmp1.replace('L', '0')
+
+    row = int(bsp_bin_row, 2)
+    seat = int(bsp_bin_seat, 2)
+
+    seat_number = row * 8 + seat
+
+    # print("Row {}, {}, {} / Seat: {}, {}, {} ==> {}".format(bsp_row, bsp_bin_row, row, bsp_seat, bsp_bin_seat, seat, seat_number))
+
+    return seat_number
 
 
 def get_highest_seat(all_bsp):
@@ -69,7 +87,7 @@ def main():
     # read the input data
     # input_data_file = "day5_test.data"
     all_bsp = slurp_input(input_data_file)
-    print(all_bsp)
+    # print(all_bsp)
 
     highest_seat = get_highest_seat(all_bsp)
 
