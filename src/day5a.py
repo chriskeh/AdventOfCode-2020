@@ -93,6 +93,21 @@ def main():
 
     print("Highest seat number: {}".format(highest_seat))
 
+    # 5b
+    # Create a set with all seats from current flight
+    my_flight = set()
+    for bsp in all_bsp:
+        my_flight.add(decode_bsp(bsp))
+
+    # Create a list with all seats in the plane
+    all_seats = set(range(59, 904))
+
+    # Just subtract them
+    print("My seat: {}".format(all_seats - my_flight))
+
+
+
+
 
 
 if __name__ == "__main__":
