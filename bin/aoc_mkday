@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DAY=$1
+
+[ ! -f src/day${1}a.py ] && sed -e "s/dayx/day${1}/g" templates/dayxa.py > src/day${1}a.py
+[ ! -f src/day${1}.data ] && touch src/day${1}.data
+[ ! -f src/day${1}_test.data ] && touch src/day${1}_test.data
