@@ -38,12 +38,13 @@ def slurp_input(input_file):
 
 def main():
 
-    # read the input data
+    # uncomment the next line to read the input data from the test file
     input_data_file = "dayx_test.data"
 
     all_answers = slurp_input(input_data_file)
 
     # print("Total: {}".format(total))
+
 
 if __name__ == "__main__":
     main()
