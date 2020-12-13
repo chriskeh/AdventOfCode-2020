@@ -33,7 +33,7 @@ def slurp_input_b(input_file):
     offset = dict()
     index = 0
     with open(input_file, 'r') as f:
-        ignore = int(f.readline().rstrip())
+        int(f.readline().rstrip())
         lines_raw = f.readline().rstrip()
         elems = lines_raw.split(',')
         for elem in elems:
@@ -42,6 +42,7 @@ def slurp_input_b(input_file):
             index += 1
 
     return int(elems[0]), offset
+
 
 def calculate_departure(moment, list_of_lines):
     """
@@ -85,7 +86,7 @@ def calculate_day13b(first_bus, start_in_time, offsets):
                 match = False
                 break
         if match:
-            return(current_time)
+            return current_time
 
         current_time += first_bus
 
@@ -94,7 +95,6 @@ def main():
 
     # uncomment the next line to read the input data from the test file
     # input_data_file = "day13_test.data"
-
 
     # earliest_time_to_leave, all_buslines = slurp_input(input_data_file)
     #
