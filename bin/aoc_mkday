@@ -2,6 +2,7 @@
 
 DAY=$1
 
-[ ! -f src/day${1}a.py ] && sed -e "s/dayx/day${1}/g" templates/dayxa.py > src/day${1}a.py
+[ ! -f src/day${1}.py ] && sed -e "s/dayx/day${1}/g" templates/dayx.py > src/day${1}.py
 [ ! -f src/day${1}.data ] && touch src/day${1}.data
 [ ! -f src/day${1}_test.data ] && touch src/day${1}_test.data
+[ ! -f tests/test_day${1}.py ] && sed -e "s/dayx/day${1}/g" templates/test_dayx.py > tests/test_day${1}.py
