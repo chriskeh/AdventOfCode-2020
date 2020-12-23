@@ -7,14 +7,12 @@ def slurp_input(input_file):
     """
     Read the input file.
     :param input_file:
-    :return: A list of sets. Each set represents the given answers in a group.
+    :return: Two lists, one for each player
     """
-    my_answers = []
-    this_answer = set()
-
     player1 = []
     player2 = []
     with open(input_file, 'r') as f:
+
         f.readline()    # read "Player 1:"
         while True:
             # Read a line.
@@ -37,26 +35,39 @@ def slurp_input(input_file):
 
 
 def play(player1, player2):
-
+    """
+    PLay a game of combat, AoC2020 Day22a
+    :param player1:
+    :param player2:
+    :return: the deck of the winner
+    """
     while player1 and player2:
         if player1[0] > player2[0]:
+            # player1 wins, add his and the other card to the bottom of the deck
             player1.append(player1[0])
             player1.append(player2[0])
         else:
+            # player2 wins, add his and the other card to the bottom of the deck
             player2.append(player2[0])
             player2.append(player1[0])
 
+        # need to remove the first card for each player, copy the slice from listitem1 to the end for each list
         player1 = player1[1:]
         player2 = player2[1:]
 
+    # return the winners cards
     if player1:
         return player1
     else:
         return player2
 
 
-
 def calculate_winners_cards(winners_cards):
+    """
+    Calculate the final sum. Last card in deck times 1, second last card times 2, ....
+    :param winners_cards:
+    :return:
+    """
     result = 0
     multiplicator = 1
     for nr in winners_cards[::-1]:
@@ -69,14 +80,11 @@ def calculate_winners_cards(winners_cards):
 def main():
 
     # uncomment the next line to read the input data from the test file
-    input_data_file = "day22.data"
+    # input_data_file = "day22_test.data"
 
     player1, player2 = slurp_input(input_data_file)
-
     winners_cards = play(player1, player2)
-
     total = calculate_winners_cards(winners_cards)
-
     print("Total: {}".format(total))
 
 
