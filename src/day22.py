@@ -65,14 +65,14 @@ def play(player1, player2):
 def calculate_winners_cards(winners_cards):
     """
     Calculate the final sum. Last card in deck times 1, second last card times 2, ....
+    Let's reverse the list, then we can iterate over the range and just do the math.
     :param winners_cards:
     :return:
     """
     result = 0
-    multiplicator = 1
-    for nr in winners_cards[::-1]:
-        result += nr * multiplicator
-        multiplicator += 1
+    liste = winners_cards[::-1]
+    for i in range(0, len(liste)):
+        result += liste[i] * (i + 1)
 
     return result
 
